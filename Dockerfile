@@ -33,7 +33,7 @@ ADD conf/jail.local /etc/fail2ban/jail.local
 # Download FreeSWITCH.
 WORKDIR /usr/src
 ENV GIT_SSL_NO_VERIFY=1
-RUN git clone https://freeswitch.org/stash/scm/fs/freeswitch.git -b v1.6.7
+RUN git clone https://freeswitch.org/stash/scm/fs/freeswitch.git -b v1.6.8
 
 # Bootstrap the build.
 WORKDIR freeswitch
@@ -69,6 +69,7 @@ EXPOSE 5060/tcp 5060/udp 5080/tcp 5080/udp
 EXPOSE 5066/tcp 7443/tcp
 EXPOSE 8021/tcp
 EXPOSE 64535-65535/udp
+EXPOSE 16384-32768/udp
 
 # Start the container.
 CMD service snmpd start && service freeswitch start && tail -f /usr/local/freeswitch/log/freeswitch.log
